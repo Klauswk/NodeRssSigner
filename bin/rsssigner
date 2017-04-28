@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+if (process.argv.length > 1) {
+    const action = process.argv.slice(2)[0].toUpperCase();
+    const args = process.argv.slice(3)[0];
+    const actions = ["ADD", "REMOVE", "LIST", "GET", "HELP"];
+
+    const actionAvailable = actions.some((optionAction) => {
+        return optionAction === action;
+    });
+
+    if (actionAvailable) {
+        if (action === "HELP") {
+            process.stdout.write(`actions: \n`);
+            actions.forEach((v) => { process.stdout.write(`${v} \n`) });
+        } else if (action === "HELP") {
+            process.stdout.write(`actions: \n`);
+            actions.forEach((v) => { process.stdout.write(`${v} \n`) });
+        }
+    } else {
+        process.stderr.write("USAGE: rsssigner [action] [args] \n");
+        process.stderr.write("Type rsssigner help to list options \n");
+        process.exit(9);
+    }
+} else {
+    process.stderr.write("USAGE: rsssigner [action] [args] \n");
+    process.stderr.write("Type rsssigner help to list options \n");
+    process.exit(9);
+}
