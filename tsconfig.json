@@ -6,7 +6,6 @@
         "app/rss/*.ts"
     ],
     "compilerOptions": {
-        "noImplicitAny": true,
         "target": "es5"
     },
     "typeRoots": [

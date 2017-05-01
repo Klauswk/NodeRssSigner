@@ -1,5 +1,5 @@
 
-export default class Rss {
+export default class Repository {
 
     tag: string;
     url: string;

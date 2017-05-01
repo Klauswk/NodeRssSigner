@@ -1,28 +1,45 @@
 #!/usr/bin/env node
 
 if (process.argv.length > 1) {
-    const action = process.argv.slice(2)[0].toUpperCase();
-    const args = process.argv.slice(3)[0];
+    const action = process.argv[2].toUpperCase();
     const actions = ["ADD", "REMOVE", "LIST", "GET", "HELP"];
 
     const actionAvailable = actions.some((optionAction) => {
         return optionAction === action;
     });
 
+    const fs = require("fs");
+
+    var repoList = [];
+    if (fs.existsSync("./repository.repository")) {
+        repoList = JSON.parse(fs.readFileSync("./repository.repository"));
+    }
+
     if (actionAvailable) {
+
         if (action === "HELP") {
             process.stdout.write(`actions: \n`);
             actions.forEach((v) => { process.stdout.write(`${v} \n`) });
-        } else if (action === "HELP") {
-            process.stdout.write(`actions: \n`);
-            actions.forEach((v) => { process.stdout.write(`${v} \n`) });
+        } else if (action === "ADD") {
+            if (process.argv.length > 4) {
+                repoList.push({ tag: process.argv[3], url: process.argv[4] });
+
+                fs.writeFileSync("./repository.repository", JSON.stringify(repoList));
+            } else {
+                process.stderr.write("USAGE: rsssigner add [name] [url] \n");
+                process.exit(9);
+            }
+        } else if (action === "LIST") {
+            process.stdout.write(fs.readFileSync("./repository.repository"));
         }
     } else {
-        process.stderr.write("USAGE: rsssigner [action] [args] \n");
-        process.stderr.write("Type rsssigner help to list options \n");
-        process.exit(9);
+        invalidInput();
     }
 } else {
+    invalidInput();
+}
+
+function invalidInput() {
     process.stderr.write("USAGE: rsssigner [action] [args] \n");
     process.stderr.write("Type rsssigner help to list options \n");
     process.exit(9);
