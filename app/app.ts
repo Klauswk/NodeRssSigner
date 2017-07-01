@@ -1,9 +1,12 @@
 import { RepositoryLocalDao } from "./impl/RepositoryLocalDao";
-import * as noderssparser from "noderssparser";
+import { EntryDaoImpl } from "./impl/EntryDaoImpl";
+import { getConnection } from './mongo/mongoConnection';
 import * as https from 'https';
 import * as http from 'http';
+import * as noderssparser from "noderssparser";
 
 let repositoryDao = new RepositoryLocalDao(process.env.npm_package_config_fileLocation);
+let entryDaoImpl = new EntryDaoImpl(getConnection());
 
 repositoryDao.list().forEach((repository) => {
     let body = '';
@@ -24,6 +27,5 @@ repositoryDao.list().forEach((repository) => {
     }
     function onEnd() {
         let result = noderssparser(body);
-        console.log(result);
     }
 });

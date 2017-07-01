@@ -3,10 +3,14 @@
         "app/*.ts",
         "app/dao/*.ts",
         "app/impl/*.ts",
-        "app/rss/*.ts"
+        "app/rss/*.ts",
+        "app/mongo/*.ts"
     ],
     "compilerOptions": {
-        "target": "es5"
+        "sourceMap": false,
+        "noImplicitAny": false,
+        "module": "commonjs",
+        "target": "es2017"
     },
     "typeRoots": [
         "node_modules/@types"

@@ -1,35 +1,39 @@
 {
-    "name": "rss-signer",
-    "version": "0.0.1",
-    "description": "Sign and control rss",
-    "main": "dist/app.js",
-    "bin": "./bin/rsssigner",
-    "config": { "fileLocation": "./repository.repository" },
-    "scripts": {
-        "start": "gulp && node dist/app.js",
-        "test": "gulp && mocha --recursive",
-        "test:unit": "gulp && mocha --recursive test/unit",
-        "test:int": "gulp && mocha --recursive test/integration"
-    },
-    "keywords": [
-        "rss",
-        "atom",
-        "node",
-        "rss2.0",
-        "rss2",
-        "signer"
-    ],
-    "author": "Klaus Klein",
-    "license": "MIT",
-    "dependencies": {
-        "noderssparser": "^0.2.1"
-    },
-    "devDependencies": {
-        "@types/node": "^7.0.14",
-        "expect.js": "^0.3.1",
-        "gulp": "^3.9.1",
-        "gulp-typescript": "^3.1.6",
-        "mocha": "^3.2.0",
-        "typescript": "^2.3.1"
-    }
+  "name": "rss-signer",
+  "version": "0.0.1",
+  "description": "Sign and control rss",
+  "main": "dist/app.js",
+  "bin": "./bin/rsssigner",
+  "config": {
+    "fileLocation": "./repository.repository",
+    "dbConn": "mongodb://172.17.0.2:27017/rsssigner"
+  },
+  "scripts": {
+    "start": "gulp && node dist/app.js",
+    "test": "gulp && mocha --recursive",
+    "test:unit": "gulp && mocha --recursive test/unit",
+    "test:int": "gulp && mocha --recursive test/integration"
+  },
+  "keywords": [
+    "rss",
+    "atom",
+    "node",
+    "rss2.0",
+    "rss2",
+    "signer"
+  ],
+  "author": "Klaus Klein",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "2.2.29",
+    "noderssparser": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.14",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.6",
+    "mocha": "^3.2.0",
+    "typescript": "^2.3.1"
+  }
 }
